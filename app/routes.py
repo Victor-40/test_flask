@@ -1,6 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import FindForm
+from app import utils
+
 
 
 @app.route('/')
@@ -25,7 +27,7 @@ def index():
 def find_builds():
     form = FindForm()
     if form.validate_on_submit():
-        setups = ["111111111111", "22222222222222", "3333333333333", "44444444444444"]
+        setups = utils.find_builds(form.build.data, form.tag.data)
         setups_count = len(setups)
 
         return render_template('result.html', title='result', form=form, setups=setups, setups_count=setups_count)
