@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>We found {{ setups_count }} setups:</p>
+    {% for setup in setups %}
+        <div><p>{{ setup }}</p></div>
+    {% endfor %}
+{% endblock %}}

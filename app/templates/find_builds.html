@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Find Setups</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.build.label }}<br>
+            {{ form.build(size=4) }}<br>
+            {% for error in form.build.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.tag.label }}<br>
+            {{ form.tag(size=32) }}<br>
+            {% for error in form.tag.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+        </p>
+{#        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>#}
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}}
