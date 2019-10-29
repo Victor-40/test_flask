@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>build: {{ form.build.data }}</p>
-    <p>tag: {{ form.tag.data }}</p>
+    <p>build: <b>{{ form.build.data }}</b></p>
+    <p>tag: <b>{{ form.tag.data }}</b></p>
     <hr>
     <p>We found {{ setups_count }} setups:</p>
-    {% for setup in setups %}
-        <div><p>{{ setup }}</p></div>
-    {% endfor %}
+    <ul>
+        {% for setup in setups %}
+            <li>{{ setup }}</li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}}
