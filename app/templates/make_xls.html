@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    make {{ count }} test configurations
+    <hr>
+    <ul>
+        {% for item in res %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}}
