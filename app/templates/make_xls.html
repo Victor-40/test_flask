@@ -3,10 +3,23 @@
 {% block content %}
     make {{ count }} test configurations
     <hr>
-    <ul>
+    <table border="1">
+        <caption><b>Test configuration table</b></caption>
+        <tr>
+            <th>InstallPath</th>
+            <th>Name</th>
+            <th>Path</th>
+            <th>SnapName</th>
+            <th>Done</th>
+        </tr>
         {% for item in res %}
-            <li>{{ item }}</li>
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+            </tr>
         {% endfor %}
-    </ul>
-
+    </table>
 {% endblock %}}

@@ -7,14 +7,18 @@
     {% else %}
         <title>Welcome - Main</title>
     {% endif %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 <body>
-    <div> Main menu:
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('find_builds') }}">Find builds</a>
-        <a href="{{ url_for('make_xls') }}">Make XLS</a>
+    <div>
+        <ul class="navbar">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('find_builds') }}">Find builds</a></li>
+            <li><a href="{{ url_for('make_xls') }}">Make XLS</a></li>
+        </ul>
     </div>
-    <hr>
+{#    <hr>#}
+    <div style="margin-left: 10%">
       {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -25,6 +29,7 @@
         {% endif %}
         {% endwith %}
     {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
 
