@@ -4,7 +4,7 @@
     <h2>Hello, {{ user.username }}!</h2>
     <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
-    <p>{{ form.rf.label }}</p>
+    <h3>{{ form.rf.label }}</h3>
     <table>
     {% for subfield in form.rf %}
         <tr>
@@ -13,5 +13,16 @@
         </tr>
     {% endfor %}
     </table>
+    <hr>
+    <h3>Choose subdir for search</h3>
+    <table>
+    {% for subfield in form.pth %}
+        <tr>
+            <td>{{ subfield }}</td>
+            <td>{{ subfield.label }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <hr>
     <p>{{ form.submit() }}</p>
 {% endblock %}

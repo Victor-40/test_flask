@@ -63,3 +63,16 @@ def make_xls(setups):
 
     return result
 
+
+def make_dir_list(_prefix, _subdir):
+    print(_prefix, _subdir)
+    root = r'\\svr-rum-net-04\new_versions'
+    path = os.path.join(root, 'CFW-2021', _subdir)
+    print(path)
+    setups_d = list()
+    obj = os.scandir(path)
+    for item in obj:
+        if item.name.startswith(_prefix):
+            setups_d.append((item.path, item.name))
+    return setups_d
+

@@ -4,7 +4,7 @@
     <h2>Hello, {{ user.username }}!</h2>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>{{ form.sf.label }}</p>
-        {{ form.sf }}
+        <p>{{ form.rf.label }}</p>
+        {{ form.rf }}
     <p>{{ form.submit() }}</p>
 {% endblock %}

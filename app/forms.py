@@ -12,7 +12,13 @@ class FindForm(FlaskForm):
 
 class RadioForm(FlaskForm):
     rf = RadioField()
-    submit = SubmitField('Go-Go')
+    pth = RadioField()
+    submit = SubmitField('Select')
+
+
+class RadioForm1(FlaskForm):
+    rf = RadioField()
+    submit = SubmitField('Select')
 
 
 class SelSetup(FlaskForm):

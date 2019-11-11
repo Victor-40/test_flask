@@ -1,9 +1,11 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
-from app.forms import FindForm, RadioForm, SelSetup
+from app.forms import FindForm, RadioForm, RadioForm1
 from app import utils
+import os
 
 setups = list()
+setups_d = list()
 
 @app.route('/')
 @app.route('/index')
@@ -42,6 +44,7 @@ def make_xls():
 
 @app.route('/single_setup', methods=['GET', 'POST'])
 def single_setup():
+    global setups_d
     form = RadioForm()
     user = {'username': "Victor"}
     form.rf.label = "Choose product"
@@ -53,11 +56,14 @@ def single_setup():
            ('EFD.V5', 'EFD.V5')]
     form.rf.choices = lst
 
-    if form.validate_on_submit():
-        # print("sf", form1.sf.data)
-        # print("rf", form.rf.data)
+    form.pth.choices = [('', '\\'), ('_Internal', '_Internal'), ('_External', '_External'), ('_Main', '_Main')]
 
-        return redirect(url_for('test'), code=303)
+    if form.validate_on_submit():
+        p = form.pth.data
+        print('p: ', p)
+        setups_d = utils.make_dir_list(form.rf.data, p)
+
+        return redirect(url_for('test'), code=302)
     else:
         return render_template('single_setup.html', title='Home', user=user, form=form)
 
@@ -65,18 +71,17 @@ def single_setup():
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     user = {'username': "Victor"}
-    lst = [('CFW', 'CFW'),
-           ('EFD.LAB', 'EFD.LAB'),
-           ('EFD.NX', 'EFD.NX'),
-           ('EFD.PRO', 'EFD.PRO'),
-           ('EFD.SE', 'EFD.SE'),
-           ('EFD.V5', 'EFD.V5')]
-    form = SelSetup()
-    form.sf.choices = lst
-    form.sf.label = "Choose setup"
-    if form.validate_on_submit():
-        print("sf", form.sf.data)
 
-        return render_template('test_1.html', user=user, form=form)
+    form = RadioForm1()
+    form.rf.choices = setups_d
+    form.rf.label = "Choose setup"
+    if form.validate_on_submit():
+        print("form.rf.data", form.rf.data)
+        # print("getattr ", getattr(g, 'data', None))
+
+        return render_template('test.html', user=user, form=form)
     else:
+
+        # print("setups 2 ", setups_d)
+        # print(g['data'])
         return render_template('test_1.html', title='Home', user=user, form=form)
