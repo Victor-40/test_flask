@@ -28,9 +28,11 @@ def find_builds():
     if form.validate_on_submit():
         setups = utils.find_builds(form.build.data, form.tag.data)
         setups_count = len(setups)
+        print(form.cfw.data)
 
         return render_template('result.html', title='result', form=form, setups=setups, setups_count=setups_count)
         # flash("Find build {}, tag {}".format(form.build.data, form.tag.data))
+    # print(form.remember_me.data)
     setups = list()
     return render_template('find_builds.html', title='Find', form=form)
 
@@ -48,13 +50,8 @@ def single_setup():
     form = RadioForm()
     user = {'username': "Victor"}
     form.rf.label = "Choose product"
-    lst = [('CFW-2021', 'CFW-2021'),
-           ('CFW-2020', 'CFW-2020'),
-           ('EFD.LAB-2019', 'EFD.LAB-2019'),
-           ('EFD.NX-2019', 'EFD.NX-2019'),
-           ('EFD.PRO-2019', 'EFD.PRO-2019'),
-           ('EFD.SE-2019', 'EFD.SE-2019'),
-           ('EFD.V5-2019', 'EFD.V5-2019')]
+    lst_0 = ['CFW-2021', 'CFW-2020', 'EFD.LAB-2019', 'EFD.NX-2019', 'EFD.PRO-2019', 'EFD.SE-2019', 'EFD.V5-2019']
+    lst = [(x, x) for x in lst_0]
     form.rf.choices = lst
 
     form.pth.choices = [('', '\\'), ('_Internal', '_Internal'), ('_External', '_External'), ('_Main', '_Main')]

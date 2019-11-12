@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Find Setups</h1>
+    <h2>Find setups for full test set</h2>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
@@ -19,7 +19,14 @@
             {% endfor %}
 
         </p>
-{#        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>#}
+    <hr>
+        <p>{{ form.cfw() }} {{ form.cfw.label }}</p>
+        <p>{{ form.lab() }} {{ form.lab.label }}</p>
+        <p>{{ form.nx() }} {{ form.nx.label }}</p>
+        <p>{{ form.pro() }} {{ form.pro.label }}</p>
+        <p>{{ form.se() }} {{ form.se.label }}</p>
+        <p>{{ form.v5() }} {{ form.v5.label }}</p>
         <p>{{ form.submit() }}</p>
+    <br>
     </form>
 {% endblock %}}

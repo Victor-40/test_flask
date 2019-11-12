@@ -7,6 +7,12 @@ class FindForm(FlaskForm):
     build = StringField('Build', validators=[DataRequired()])
     tag = StringField('Tag', validators=[DataRequired()])
     # remember_me = BooleanField('Remember me')
+    cfw = BooleanField(label="CFW", default=True)
+    lab = BooleanField(label="EFD.LAB", default=True)
+    nx = BooleanField(label="EFD.NX", default=True)
+    pro = BooleanField(label="EFD.PRO", default=True)
+    se = BooleanField(label="EFD.SE", default=True)
+    v5 = BooleanField(label="EFD.V5", default=True)
     submit = SubmitField('Find')
 
 
