@@ -48,19 +48,20 @@ def single_setup():
     form = RadioForm()
     user = {'username': "Victor"}
     form.rf.label = "Choose product"
-    lst = [('CFW', 'CFW'),
-           ('EFD.LAB', 'EFD.LAB'),
-           ('EFD.NX', 'EFD.NX'),
-           ('EFD.PRO', 'EFD.PRO'),
-           ('EFD.SE', 'EFD.SE'),
-           ('EFD.V5', 'EFD.V5')]
+    lst = [('CFW-2021', 'CFW-2021'),
+           ('CFW-2020', 'CFW-2020'),
+           ('EFD.LAB-2019', 'EFD.LAB-2019'),
+           ('EFD.NX-2019', 'EFD.NX-2019'),
+           ('EFD.PRO-2019', 'EFD.PRO-2019'),
+           ('EFD.SE-2019', 'EFD.SE-2019'),
+           ('EFD.V5-2019', 'EFD.V5-2019')]
     form.rf.choices = lst
 
     form.pth.choices = [('', '\\'), ('_Internal', '_Internal'), ('_External', '_External'), ('_Main', '_Main')]
 
     if form.validate_on_submit():
         p = form.pth.data
-        print('p: ', p)
+        # print('p: ', p)
         setups_d = utils.make_dir_list(form.rf.data, p)
 
         return redirect(url_for('test'), code=302)

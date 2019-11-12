@@ -5,6 +5,13 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>{{ form.rf.label }}</p>
-        {{ form.rf }}
+     <table>
+        {% for subfield in form.rf %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+        {% endfor %}
+    </table>
     <p>{{ form.submit() }}</p>
 {% endblock %}

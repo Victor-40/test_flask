@@ -65,14 +65,22 @@ def make_xls(setups):
 
 
 def make_dir_list(_prefix, _subdir):
-    print(_prefix, _subdir)
+    # print(_prefix, _subdir)
     root = r'\\svr-rum-net-04\new_versions'
-    path = os.path.join(root, 'CFW-2021', _subdir)
+    path = os.path.join(root, _prefix, _subdir)
     print(path)
     setups_d = list()
+
     obj = os.scandir(path)
+
+    if _subdir == '_External':
+        for item in obj:
+            sp = os.path.join(item.name, os.listdir(item.path)[0])
+            setups_d.append((os.path.join(path, sp), sp))
+        return sorted(setups_d)
+
     for item in obj:
         if item.name.startswith(_prefix):
             setups_d.append((item.path, item.name))
-    return setups_d
+    return sorted(setups_d)
 
