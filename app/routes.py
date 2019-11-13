@@ -7,6 +7,7 @@ import os
 setups = list()
 setups_d = list()
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -25,14 +26,29 @@ def index():
 def find_builds():
     form = FindForm()
     global setups
+
     if form.validate_on_submit():
-        setups = utils.find_builds(form.build.data, form.tag.data)
+        prod_lst = list()
+        # print('form.cfw.data: ', form.cfw.data)
+        if form.cfw.data:
+            prod_lst.append(form.cfw.label.text)
+            # print('prod_lst: ', prod_lst)
+        if form.lab.data:
+            prod_lst.append(form.lab.label.text)
+        if form.nx.data:
+            prod_lst.append(form.nx.label.text)
+        if form.pro.data:
+            prod_lst.append(form.pro.label.text)
+        if form.se.data:
+            prod_lst.append(form.se.label.text)
+        if form.v5.data:
+            prod_lst.append(form.v5.label.text)
+
+        setups = utils.find_builds(form.build.data, form.tag.data, prod_lst)
         setups_count = len(setups)
-        print(form.cfw.data)
 
         return render_template('result.html', title='result', form=form, setups=setups, setups_count=setups_count)
         # flash("Find build {}, tag {}".format(form.build.data, form.tag.data))
-    # print(form.remember_me.data)
     setups = list()
     return render_template('find_builds.html', title='Find', form=form)
 

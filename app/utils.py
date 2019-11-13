@@ -6,12 +6,19 @@ from win32com import client
 import pythoncom
 
 
-def find_builds(build, tag):
+def find_builds(build, tag, _prod):
     with open(r'c:\experiments\work_py\cfg.json') as fi:
         cfg_dct = json.load(fi)
 
     patt = re.compile(r'-%s(_x64)*__(git--)*%s$' % (build, tag), re.I)
-    search_dirs = [os.path.join(cfg_dct['root_dir'], item) for item in cfg_dct['prod_dirs']]
+
+    full_prod = cfg_dct['prod_dirs']
+    work_prod = list()
+    for i in _prod:
+        for j in full_prod:
+            if j.startswith(i):
+                work_prod.append(j)
+    search_dirs = [os.path.join(cfg_dct['root_dir'], item) for item in work_prod]
     setups = list()
 
     for _dir in search_dirs:
